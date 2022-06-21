@@ -6,6 +6,6 @@ int main()
 {
     cout << "Hello" << endl;
     cout<<"Prueba Chris"<<endl;
-    cout << "Hello world!Prueba_Freddy" << endl;
+    cout<<"Prueba Stalin"<<endl;
     return 0;
 }

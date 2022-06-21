@@ -56,7 +56,7 @@ public:
 
 
 
-    bool sucesor(int accion) {
+    bool pasoSiguiente(int accion) {
 
         switch(accion) {
         case 1:
@@ -195,7 +195,7 @@ public:
             Estado *es =(new Estado(estado.e[0],estado.e[1],estado.e[2]));
 
 
-            if(es->sucesor(i)) {
+            if(es->pasoSiguiente(i)) {
                 mes[nh]=es;
                 nh++;
                 //es->printEstado();
