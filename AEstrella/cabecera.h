@@ -5,120 +5,207 @@
 using namespace std;
 class Estado {
 public:
-    int e[3];
+    //Matriz que se usara para representar los estados del 8 puzle
+    int e[3][3];
+    int costo;
 
-    Estado() { //Constructor
-        //for(int i=0; i<3; i++) {/
-        e[0]=3; //canivales izq
-        e[1]=3; //misioneros izq
-        e[2]=1; //lado 1=izq 0=derecho
-        //}/
+    Estado() { //Constructor inicializa el puzzle en el orden que deberia estar
+        //el costo se inicializa en cero
+        costo =0;
+        //Fila Superior
+        e[0][0]=0;
+        e[0][1]=1;
+        e[0][2]=2;
 
+        //Fila Intermedia
+        e[1][0]=3;
+        e[1][1]=4;
+        e[1][2]=5;
+
+        //Fila Inferior
+        e[2][0]=6;
+        e[2][1]=7;
+        e[2][2]=8;
     };
-
-
-
-    Estado(int c,int m,int b) { //Constructor
-        //for(int i=0; i<3; i++) {/
-        e[0]=c; //canivales izq
-        e[1]=m; //misioneros izq
-        e[2]=b; //lado 1=izq 0=derecho
-        //}/
-
-    };
-
     Estado* autoApuntador() {
         return this;
     };
 
-
-    //funciones miembro
+    //FUNCIONES
+    //Imprimir estado
     void printEstado() {
-        //cout << "Hello world!" << endl;
-        cout <<"-------------------------------------------------"<< endl;
-        for(int i=0; i<3; i++) {
-            int x=e[i];
-            cout << x << "\t";
-
+    int filas = (sizeof(e)/sizeof(e[0]));
+    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+    for (int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++)
+        {
+            cout<< "[" <<e[i][j]<<"] ";
         }
-        cout << "\t";
-        for(int i=0; i<3; i++) {
 
-            if(i!=2)
-                cout << 3-e[i] << "\t";
-            else
-                cout << 1-e[i] << "\t";
-
-        }
-        cout<<endl;
-        cout <<"-------------------------------------------------"<< endl;
+    cout<<endl;
+    }
+    cout<<"Costo actual= "<< costo<<endl;
     };
-
-
-
+    //METODO PASO SIGUIENTE
     bool pasoSiguiente(int accion) {
+    //variable que almacena la posicion f = fila c= columna
+    int f,c;
 
+    //primero determinamos la posición en la que se encuentra el espacio vacio
+    int filas = (sizeof(e)/sizeof(e[0]));
+    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+        for (int i = 0; i < filas; i++){
+        for (int j = 0; j < columnas; j++){
+            if(e[i][j]==0){
+                f=i;
+                c=j;
+            }
+        }
+    }
+    cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
         switch(accion) {
-        case 1:
-            //cc
-            cruzar(2,0);
+        case 1://ARRIBA
+            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)){
+            cout<< "No se puede realizar accion"<< endl;
             break;
-        case 2:
-            //mm
-            cruzar(0,2);
+            }if(f==1 && c==0){
+                pasar(f,c,0,0);
+                costo++;
+                break;
+            }if(f==1 && c==1){
+                pasar(f,c,0,1);
+                costo++;
+                break;
+            }if(f==1 && c==2){
+                pasar(f,c,0,2);
+                costo++;
+                break;
+            }if(f==2 && c==0){
+                pasar(f,c,1,0);
+                costo++;
+                break;
+            }if(f==2 && c==1){
+                pasar(f,c,1,1);
+                costo++;
+                break;
+            }if(f==2 && c==2){
+                pasar(f,c,1,2);
+                costo++;
+                break;
+            }
             break;
-        case 3:
-            //cm
-            cruzar(1,1);
+        case 2: //ABAJO
+            if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)){
+            cout<< "No se puede realizar accion" << endl;
             break;
-        case 4:
-            //c
-            cruzar(1,0);
+            }if(f==1 && c==0){
+                pasar(f,c,2,0);
+                costo++;
+                break;
+            }if(f==1 && c==1){
+                pasar(f,c,2,1);
+                costo++;
+                break;
+            }if(f==1 && c==2){
+                pasar(f,c,2,2);
+                costo++;
+                break;
+            }if(f==0 && c==0){
+                pasar(f,c,1,0);
+                costo++;
+                break;
+            }if(f==0 && c==1){
+                pasar(f,c,1,1);
+                costo++;
+                break;
+            }if(f==0 && c==2){
+                pasar(f,c,1,2);
+                costo++;
+                break;
+            }
             break;
-        case 5:
-            //m
-            cruzar(0,1);
+        case 3: //IZQUIERDA
+            if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)){
+            cout<< "No se puede realizar accion"<< endl;
             break;
-
+            }if(f==0 && c==1){
+                pasar(f,c,0,0);
+                costo++;
+                break;
+            }if(f==1 && c==1){
+                pasar(f,c,1,0);
+                costo++;
+                break;
+            }if(f==2 && c==1){
+                pasar(f,c,2,0);
+                costo++;
+                break;
+            }if(f==0 && c==2){
+                pasar(f,c,0,1);
+                costo++;
+                break;
+            }if(f==1 && c==2){
+                pasar(f,c,1,1);
+                costo++;
+                break;
+            }if(f==2 && c==2){
+                pasar(f,c,2,1);
+                costo++;
+                break;
+            }
+            break;
+        case 4: //derecha
+            if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)){
+            cout<< "No se puede realizar accion"<< endl;
+            break;
+            }if(f==0 && c==1){
+                pasar(f,c,0,2);
+                costo++;
+                break;
+            }if(f==1 && c==1){
+                pasar(f,c,1,2);
+                costo++;
+                break;
+            }if(f==2 && c==1){
+                pasar(f,c,2,2);
+                costo++;
+                break;
+            }if(f==0 && c==0){
+                pasar(f,c,0,1);
+                costo++;
+                break;
+            }if(f==1 && c==0){
+                pasar(f,c,1,1);
+                costo++;
+                break;
+            }if(f==2 && c==0){
+                pasar(f,c,2,1);
+                costo++;
+                break;
+            }
+            break;
         }
-
-        return(e[0]<=e[1]||e[1]==0)&&(3-e[0]<=3-e[1]||3-e[1]==0)&&(e[0]>=0)&&(e[0]<=3)&&(e[1]>=0)&&(e[1]<=3);
-
-        //return (e[0]<=e[1] || e[1]==0) && (3-e[0]<=3-e[1] || 3-e[1]==0)
-
+        return NULL;
     }
-
-    //(e[0]<=e[1]||e[1]==0&&3-e[0]<=3-e[1]||3-e[0]==0)&&(e[0]>=0)&&(e[0]<=3)&&(e[1]>=0)&&(e[1]<=3)
-    void cruzar(int c,int m) {
-
-        //cout << c << " " << m << endl;
-        if(e[2]==1) {
-            e[2]=0;
-            e[0]=e[0]-c;
-            e[1]=e[1]-m;
-        } else {
-            e[2]=1;
-            e[0]=e[0]+c;
-            e[1]=e[1]+m;
-        }
-
-
+    //FUNCION PASAR (INTERCAMNBIO)
+    void pasar(int f,int c,int nf,int nc) {
+        //f y c = fila y columna actual   && nf y nc = siguiente fila y columna a realizar el cambio.
+        cout<<"pasa ----> "<<f<<" "<<c<<"\n"<<"pasa ----> "<<nf<<" "<<nc<<"\n"<<endl;
+        int aux;
+        aux= e[nf][nc];
+        e[nf][nc]=e[f][c];
+        e[f][c]=aux;
     }
-
     Estado getEstado() {
-
         return *this;
     }
-
     bool testObjetivo(){
-
-        return(e[0]==0 && e[1]==0 && e[2]==0);
-
+        return(e[0][0]==0 && e[1][0]==1 && e[1][0]==2  && e[1][0]==3 && e[1][0]==4 && e[1][0]==5 && e[1][0]==6 && e[1][0]==7 && e[1][0]==8);
     }
-
 };
 
-
+/*
 class Nodo {
 public:
 
@@ -298,7 +385,7 @@ public:
             f=NULL;
             f=aux;
             nEf--;
-        } else {
+        }  {
 
             for(int i=0; i<nEf-1; i++) {
                 aux[i]==NULL;
@@ -415,7 +502,7 @@ public:
             exp=NULL;
             exp=aux;
             nEE--;
-        } else {
+        }  {
 
              for(int i=0; i<nEE-1; i++) {
                 aux[i]==NULL;
@@ -461,9 +548,7 @@ public:
 
 
 };
-
-
-
+*/
 
 
 

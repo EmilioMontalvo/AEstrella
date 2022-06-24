@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1656105109 source:c:\users\stalin\documents\github\aestrella\aestrella\main.cpp
+	<iostream>
+	"cabecera.h"
+
+1656108829 c:\users\stalin\documents\github\aestrella\aestrella\cabecera.h
+	<iostream>
+
