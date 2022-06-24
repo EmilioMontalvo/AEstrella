@@ -207,6 +207,41 @@ public:
     bool testObjetivo(){
         return(e[0][0]==0 && e[1][0]==1 && e[1][0]==2  && e[1][0]==3 && e[1][0]==4 && e[1][0]==5 && e[1][0]==6 && e[1][0]==7 && e[1][0]==8);
     }
+
+    bool existeSolucion(){
+
+    int inversiones=0;
+    int aux[9];
+    int c=0;
+
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+
+                aux[c]=e[i][j];
+
+                c++;
+            }
+        }
+
+
+        for(int i=0;i<9;i++){
+            for(int j=i+1;j<9;j++){
+
+
+                if(aux[i]>aux[j] && aux[i]!=0 && aux[j]!=0 ){
+                    inversiones++;
+                }
+            }
+        }
+
+
+
+        return(inversiones%2==0);
+
+
+
+
+    }
 };
 
 /*
