@@ -68,6 +68,7 @@ public:
         case 1://ARRIBA
             if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)){
             cout<< "No se puede realizar accion"<< endl;
+            return false;
             break;
             }if(f==1 && c==0){
                 pasar(f,c,0,0);
@@ -98,6 +99,7 @@ public:
         case 2: //ABAJO
             if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)){
             cout<< "No se puede realizar accion" << endl;
+            return false;
             break;
             }if(f==1 && c==0){
                 pasar(f,c,2,0);
@@ -128,6 +130,7 @@ public:
         case 3: //IZQUIERDA
             if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)){
             cout<< "No se puede realizar accion"<< endl;
+            return false;
             break;
             }if(f==0 && c==1){
                 pasar(f,c,0,0);
@@ -158,6 +161,7 @@ public:
         case 4: //derecha
             if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)){
             cout<< "No se puede realizar accion"<< endl;
+            return false;
             break;
             }if(f==0 && c==1){
                 pasar(f,c,0,2);
@@ -186,7 +190,7 @@ public:
             }
             break;
         }
-        return NULL;
+        return true;
     }
     //FUNCION PASAR (INTERCAMNBIO)
     void pasar(int f,int c,int nf,int nc) {
