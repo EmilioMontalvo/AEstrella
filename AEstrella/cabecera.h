@@ -5,35 +5,57 @@
 using namespace std;
 class Estado {
 public:
-    int e[3];
+    //Matriz que se usara para representar los estados del 8 puzle
+    int e[3][3];
+    int costo;
 
-    Estado() { //Constructor
+    Estado() { //Constructor  que inicializa el puzzle en el orden que deberia estar
         //for(int i=0; i<3; i++) {/
-        e[0]=3; //canivales izq
-        e[1]=3; //misioneros izq
-        e[2]=1; //lado 1=izq 0=derecho
+        //el costo se inicializa en cero
+        costo =0;
+        //fila Superior
+        e[0][0]=0;
+        e[0][1]=1;
+        e[0][2]=2;
+
+        //Fila Intermedia
+        e[1][0]=3;
+        e[1][1]=4;
+        e[1][2]=5;
+
+        //Fila Inferior
+        e[2][0]=6;
+        e[2][1]=7;
+        e[2][2]=8;
+
         //}/
 
     };
 
 
 
-    Estado(int c,int m,int b) { //Constructor
-        //for(int i=0; i<3; i++) {/
-        e[0]=c; //canivales izq
-        e[1]=m; //misioneros izq
-        e[2]=b; //lado 1=izq 0=derecho
-        //}/
 
-    };
 
     Estado* autoApuntador() {
         return this;
     };
 
 
-    //funciones miembro
+    //funciones
     void printEstado() {
+    int filas = (sizeof(e)/sizeof(e[0]));
+    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+    for (int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++)
+        {
+            cout<< "[" <<e[i][j]<<"] ";
+        }
+
+    cout<<endl;
+    }
+    cout<<"Costo actual= "<< costo<<endl;
+    /*
         //cout << "Hello world!" << endl;
         cout <<"-------------------------------------------------"<< endl;
         for(int i=0; i<3; i++) {
@@ -52,14 +74,31 @@ public:
         }
         cout<<endl;
         cout <<"-------------------------------------------------"<< endl;
+    */
     };
 
-
-
     bool pasoSiguiente(int accion) {
+    //primero determinamos la posición en la que se encuentra el espacio vacio
+    //en este caso el espacio vacio es representado con 0
 
+    //variable que almacena la posicion f = fila c= columna
+    int f,c;
+
+    int filas = (sizeof(e)/sizeof(e[0]));
+    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+        for (int i = 0; i < filas; i++){
+        for (int j = 0; j < columnas; j++){
+            if(e[i][j]==0){
+                f=i;
+                c=j;
+            }
+        }
+    }
+
+
+    /*
         switch(accion) {
-        case 1:
+        case 1://arriba
             //cc
             cruzar(2,0);
             break;
@@ -85,10 +124,11 @@ public:
         return(e[0]<=e[1]||e[1]==0)&&(3-e[0]<=3-e[1]||3-e[1]==0)&&(e[0]>=0)&&(e[0]<=3)&&(e[1]>=0)&&(e[1]<=3);
 
         //return (e[0]<=e[1] || e[1]==0) && (3-e[0]<=3-e[1] || 3-e[1]==0)
-
+*/
     }
 
     //(e[0]<=e[1]||e[1]==0&&3-e[0]<=3-e[1]||3-e[0]==0)&&(e[0]>=0)&&(e[0]<=3)&&(e[1]>=0)&&(e[1]<=3)
+/*
     void cruzar(int c,int m) {
 
         //cout << c << " " << m << endl;
@@ -115,10 +155,11 @@ public:
         return(e[0]==0 && e[1]==0 && e[2]==0);
 
     }
+*/
 
 };
 
-
+/*
 class Nodo {
 public:
 
@@ -461,9 +502,7 @@ public:
 
 
 };
-
-
-
+*/
 
 
 
