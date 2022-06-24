@@ -3,12 +3,16 @@
 
 int main()
 {
+    /*
     cout << "Hello" << endl;
     cout<<"Prueba Chris"<<endl;
-    cout<<"Prueba Stalin"<<endl;
+    cout<<"Prueba Stalin"<<endl;*/
 
     Estado estado;
+
+
     estado.printEstado();
+/*
     cout<< endl;
     cout<< endl;
     estado.pasoSiguiente(4);
@@ -34,7 +38,10 @@ int main()
     estado.pasoSiguiente(3);
     estado.printEstado();
     estado.pasoSiguiente(3);
-    estado.printEstado();
+    estado.printEstado();*/
+
+
+    cout<<estado.existeSolucion()<<endl;
 
     return 0;
 }
