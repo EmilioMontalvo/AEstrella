@@ -258,7 +258,21 @@ public:
 
 
 
+<<<<<<< Updated upstream
         return(inversiones%2==0);
+=======
+    }
+*/
+    int funcionDistanciaManhattan(Estado* eFinal){
+        for(int j=0; j<3);j++){
+            for(int k=0;k<3;k++){
+                if(i==e[i][j]){
+                  calcular()
+                }
+            }
+      }
+    }
+>>>>>>> Stashed changes
 
     }
 };
