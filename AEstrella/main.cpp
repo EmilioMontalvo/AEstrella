@@ -41,7 +41,14 @@ int main()
     estado.printEstado();*/
 
 
-    cout<<estado.existeSolucion()<<endl;
+    //cout<<estado.existeSolucion()<<endl;
+
+    Nodo n;
+    n.expandirNodo();
+
+    for(int i=0;i<n.fr;i++){
+        n.hijos[i]->estado.printEstado();
+    }
 
     return 0;
 }

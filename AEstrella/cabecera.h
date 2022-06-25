@@ -27,6 +27,21 @@ public:
         e[2][1]=7;
         e[2][2]=8;
     };
+
+    Estado(int es[3][3],int cos) { //Constructor
+
+        for(int i=0;i<3;i++){
+
+            for(int j=0;j<3;j++){
+
+                e[i][j]=es[i][j];
+
+            }
+
+        }
+        costo=cos;
+    };
+
     Estado* autoApuntador() {
         return this;
     };
@@ -263,7 +278,7 @@ public:
     }
 };
 
-/*
+
 class Nodo {
 public:
 
@@ -333,11 +348,11 @@ public:
 
         int nh=0;
         Estado **mes;
-        mes=new Estado*[5];
+        mes=new Estado*[4];
 
-        for(int i=1; i<=5; i++) {
+        for(int i=1; i<=4; i++) {
 
-            Estado *es =(new Estado(estado.e[0],estado.e[1],estado.e[2]));
+            Estado *es =(new Estado(estado.e,estado.costo));
 
 
             if(es->pasoSiguiente(i)) {
@@ -373,7 +388,7 @@ public:
 
 };
 
-
+/*
 class Frontera {
 public:
     Nodo **f;
