@@ -34,156 +34,178 @@ public:
     //FUNCIONES
     //Imprimir estado
     void printEstado() {
-    int filas = (sizeof(e)/sizeof(e[0]));
-    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
-    for (int i = 0; i < filas; i++)
-    {
-        for (int j = 0; j < columnas; j++)
-        {
-            cout<< "[" <<e[i][j]<<"] ";
-        }
+        int filas = (sizeof(e)/sizeof(e[0]));
+        int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                cout<< "[" <<e[i][j]<<"] ";
+            }
 
-    cout<<endl;
-    }
-    cout<<"Costo actual= "<< costo<<endl;
+            cout<<endl;
+        }
+        cout<<"Costo actual= "<< costo<<endl;
     };
     //METODO PASO SIGUIENTE
     bool pasoSiguiente(int accion) {
-    //variable que almacena la posicion f = fila c= columna
-    int f,c;
+        //variable que almacena la posicion f = fila c= columna
+        int f,c;
 
-    //primero determinamos la posición en la que se encuentra el espacio vacio
-    int filas = (sizeof(e)/sizeof(e[0]));
-    int columnas = (sizeof(e[0])/sizeof(e[0][0]));
-        for (int i = 0; i < filas; i++){
-        for (int j = 0; j < columnas; j++){
-            if(e[i][j]==0){
-                f=i;
-                c=j;
+        //primero determinamos la posición en la que se encuentra el espacio vacio
+        int filas = (sizeof(e)/sizeof(e[0]));
+        int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if(e[i][j]==0) {
+                    f=i;
+                    c=j;
+                }
             }
         }
-    }
-    cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
+        cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
         switch(accion) {
         case 1://ARRIBA
-            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)){
-            cout<< "No se puede realizar accion"<< endl;
-            return false;
-            break;
-            }if(f==1 && c==0){
+            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) {
+                cout<< "No se puede realizar accion"<< endl;
+                return false;
+                break;
+            }
+            if(f==1 && c==0) {
                 pasar(f,c,0,0);
                 costo++;
                 break;
-            }if(f==1 && c==1){
+            }
+            if(f==1 && c==1) {
                 pasar(f,c,0,1);
                 costo++;
                 break;
-            }if(f==1 && c==2){
+            }
+            if(f==1 && c==2) {
                 pasar(f,c,0,2);
                 costo++;
                 break;
-            }if(f==2 && c==0){
+            }
+            if(f==2 && c==0) {
                 pasar(f,c,1,0);
                 costo++;
                 break;
-            }if(f==2 && c==1){
+            }
+            if(f==2 && c==1) {
                 pasar(f,c,1,1);
                 costo++;
                 break;
-            }if(f==2 && c==2){
+            }
+            if(f==2 && c==2) {
                 pasar(f,c,1,2);
                 costo++;
                 break;
             }
             break;
         case 2: //ABAJO
-            if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)){
-            cout<< "No se puede realizar accion" << endl;
-            return false;
-            break;
-            }if(f==1 && c==0){
+            if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)) {
+                cout<< "No se puede realizar accion" << endl;
+                return false;
+                break;
+            }
+            if(f==1 && c==0) {
                 pasar(f,c,2,0);
                 costo++;
                 break;
-            }if(f==1 && c==1){
+            }
+            if(f==1 && c==1) {
                 pasar(f,c,2,1);
                 costo++;
                 break;
-            }if(f==1 && c==2){
+            }
+            if(f==1 && c==2) {
                 pasar(f,c,2,2);
                 costo++;
                 break;
-            }if(f==0 && c==0){
+            }
+            if(f==0 && c==0) {
                 pasar(f,c,1,0);
                 costo++;
                 break;
-            }if(f==0 && c==1){
+            }
+            if(f==0 && c==1) {
                 pasar(f,c,1,1);
                 costo++;
                 break;
-            }if(f==0 && c==2){
+            }
+            if(f==0 && c==2) {
                 pasar(f,c,1,2);
                 costo++;
                 break;
             }
             break;
         case 3: //IZQUIERDA
-            if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)){
-            cout<< "No se puede realizar accion"<< endl;
-            return false;
-            break;
-            }if(f==0 && c==1){
+            if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)) {
+                cout<< "No se puede realizar accion"<< endl;
+                return false;
+                break;
+            }
+            if(f==0 && c==1) {
                 pasar(f,c,0,0);
                 costo++;
                 break;
-            }if(f==1 && c==1){
+            }
+            if(f==1 && c==1) {
                 pasar(f,c,1,0);
                 costo++;
                 break;
-            }if(f==2 && c==1){
+            }
+            if(f==2 && c==1) {
                 pasar(f,c,2,0);
                 costo++;
                 break;
-            }if(f==0 && c==2){
+            }
+            if(f==0 && c==2) {
                 pasar(f,c,0,1);
                 costo++;
                 break;
-            }if(f==1 && c==2){
+            }
+            if(f==1 && c==2) {
                 pasar(f,c,1,1);
                 costo++;
                 break;
-            }if(f==2 && c==2){
+            }
+            if(f==2 && c==2) {
                 pasar(f,c,2,1);
                 costo++;
                 break;
             }
             break;
         case 4: //derecha
-            if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)){
-            cout<< "No se puede realizar accion"<< endl;
-            return false;
-            break;
-            }if(f==0 && c==1){
+            if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)) {
+                cout<< "No se puede realizar accion"<< endl;
+                return false;
+                break;
+            }
+            if(f==0 && c==1) {
                 pasar(f,c,0,2);
                 costo++;
                 break;
-            }if(f==1 && c==1){
+            }
+            if(f==1 && c==1) {
                 pasar(f,c,1,2);
                 costo++;
                 break;
-            }if(f==2 && c==1){
+            }
+            if(f==2 && c==1) {
                 pasar(f,c,2,2);
                 costo++;
                 break;
-            }if(f==0 && c==0){
+            }
+            if(f==0 && c==0) {
                 pasar(f,c,0,1);
                 costo++;
                 break;
-            }if(f==1 && c==0){
+            }
+            if(f==1 && c==0) {
                 pasar(f,c,1,1);
                 costo++;
                 break;
-            }if(f==2 && c==0){
+            }
+            if(f==2 && c==0) {
                 pasar(f,c,2,1);
                 costo++;
                 break;
@@ -204,18 +226,18 @@ public:
     Estado getEstado() {
         return *this;
     }
-    bool testObjetivo(){
+    bool testObjetivo() {
         return(e[0][0]==0 && e[1][0]==1 && e[1][0]==2  && e[1][0]==3 && e[1][0]==4 && e[1][0]==5 && e[1][0]==6 && e[1][0]==7 && e[1][0]==8);
     }
 
-    bool existeSolucion(){
+    bool existeSolucion() {
 
-    int inversiones=0;
-    int aux[9];
-    int c=0;
+        int inversiones=0;
+        int aux[9];
+        int c=0;
 
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
+        for(int i=0; i<3; i++) {
+            for(int j=0; j<3; j++) {
 
                 aux[c]=e[i][j];
 
@@ -224,11 +246,11 @@ public:
         }
 
 
-        for(int i=0;i<9;i++){
-            for(int j=i+1;j<9;j++){
+        for(int i=0; i<9; i++) {
+            for(int j=i+1; j<9; j++) {
 
 
-                if(aux[i]>aux[j] && aux[i]!=0 && aux[j]!=0 ){
+                if(aux[i]>aux[j] && aux[i]!=0 && aux[j]!=0 ) {
                     inversiones++;
                 }
             }
@@ -237,9 +259,6 @@ public:
 
 
         return(inversiones%2==0);
-
-
-
 
     }
 };
