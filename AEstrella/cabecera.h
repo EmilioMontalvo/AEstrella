@@ -1,6 +1,7 @@
 #ifndef CABECERA_H_INCLUDED
 #define CABECERA_H_INCLUDED
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 class Estado {
@@ -255,25 +256,72 @@ public:
                 }
             }
         }
-
-
-
-<<<<<<< Updated upstream
         return(inversiones%2==0);
-=======
-    }
-*/
-    int funcionDistanciaManhattan(Estado* eFinal){
-        for(int j=0; j<3);j++){
-            for(int k=0;k<3;k++){
-                if(i==e[i][j]){
-                  calcular()
-                }
-            }
-      }
-    }
->>>>>>> Stashed changes
+    };
 
+
+    int funcionDistanciaManhattan(){
+      int distanciaTotal=0;
+        for(int i=0; i<3;i++){
+            for(int j=0;j<3;j++){
+                  distanciaTotal+= calcularDistanciaManhattan(e[i][j],i,j);
+            }
+        }
+        return distanciaTotal;
+    }
+
+    int calcularDistanciaManhattan(int num, int posi, int posj){ //1 al 8
+      int aux1, aux2, distancia;
+      switch(num){
+        case 0:
+            aux1=abs(0-posi);
+            aux2=abs(0-posj);
+            distancia=aux1+aux2;
+            break;
+        case 1:
+          aux1=abs(0-posi);
+          aux2=abs(1-posj);
+          distancia=aux1+aux2;
+          break;
+        case 2:
+          aux1=abs(0-posi);
+          aux2=abs(2-posj);
+          distancia=aux1+aux2;
+          break;
+        case 3:
+          aux1=abs(1-posi);
+          aux2=abs(0-posj);
+          distancia=aux1+aux2;
+          break;
+        case 4:
+          aux1=abs(1-posi);
+          aux2=abs(1-posj);
+          distancia=aux1+aux2;
+          break;
+        case 5:
+          aux1=abs(1-posi);
+          aux2=abs(2-posj);
+          distancia=aux1+aux2;
+          break;
+        case 6:
+          aux1=abs(2-posi);
+          aux2=abs(0-posj);
+          distancia=aux1+aux2;
+          break;
+        case 7:
+          aux1=abs(2-posi);
+          aux2=abs(1-posj);
+          distancia=aux1+aux2;
+          break;
+        case 8:
+          aux1=abs(2-posi);
+          aux2=abs(2-posj);
+          distancia=aux1+aux2;
+          break;
+        default:
+          cout<<"Numero no posible\n";
+      }
+      return distancia;
     }
 };
 

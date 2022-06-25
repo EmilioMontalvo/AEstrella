@@ -12,7 +12,8 @@ int main()
 
 
     estado.printEstado();
-/*
+    int val1 = estado.funcionDistanciaManhattan();
+
     cout<< endl;
     cout<< endl;
     estado.pasoSiguiente(4);
@@ -38,10 +39,12 @@ int main()
     estado.pasoSiguiente(3);
     estado.printEstado();
     estado.pasoSiguiente(3);
-    estado.printEstado();*/
+    estado.printEstado();
 
 
     cout<<estado.existeSolucion()<<endl;
+    int val2 = estado.funcionDistanciaManhattan();
 
+    cout<<"valor antes: "<<val1<<" || valor despues: "<<val2;
     return 0;
 }
