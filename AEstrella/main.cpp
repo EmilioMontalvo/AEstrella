@@ -55,6 +55,29 @@ int main()
     for(int i=0;i<n.hijos[0]->fr;i++){
         n.hijos[0]->hijos[i]->estado.printEstado();
     }*/
+/*
+    //pruebas lista/*
+    Nodo n1;
+    Nodo n2;
+    Nodo n3;
+
+    Lista l;
+
+    l.nuevoElemento(n1.autoApuntador());
+    l.nuevoElemento(n1.autoApuntador());
+    l.nuevoElemento(n1.autoApuntador());
+
+    for(int i=0;i<l.nEl;i++){
+        l.f[i]->estado.printEstado();
+    }
+    cout<<"---------"<<endl;
+
+    l.extraer();
+
+    for(int i=0;i<l.nEl;i++){
+        l.f[i]->estado.printEstado();
+    }
+*/
 
     return 0;
 }

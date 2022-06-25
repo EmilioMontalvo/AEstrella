@@ -388,44 +388,44 @@ public:
 
 };
 
-/*
-class Frontera {
+
+class Lista {
 public:
     Nodo **f;
-    int nEf;
+    int nEl;
 
-    Frontera() {
+    Lista() {
         f=NULL;
-        nEf=0;
+        nEl=0;
 
     }
 
-    ~Frontera() {
-        for(int C=0; C<nEf; C++) {
+    ~Lista() {
+        for(int C=0; C<nEl; C++) {
             f[C]=NULL;
         }
         delete[] f;
         f=NULL;
-        nEf=0;
+        nEl=0;
 
 
     };
 
     void nuevoElemento(Nodo *n) {
         Nodo **aux;
-        aux=new Nodo*[nEf+1];
-        for(int i=0; i<nEf; i++) {
+        aux=new Nodo*[nEl+1];
+        for(int i=0; i<nEl; i++) {
             aux[i]=f[i];
             f[i]=NULL;
         }
-        aux[nEf]=n;
+        aux[nEl]=n;
 
-        if(nEf>0)
+        if(nEl>0)
             delete[] f;
 
         f=NULL;
         f=aux;
-        nEf++;
+        nEl++;
 
     };
 
@@ -433,10 +433,10 @@ public:
 
         bool resultado=false;
         Nodo **aux;
-        aux=new Nodo*[nEf-1];
+        aux=new Nodo*[nEl-1];
         int pos =-1;
 
-        for(int i=0; i<nEf; i++) {
+        for(int i=0; i<nEl; i++) {
             if(n==f[i]) {
                 pos=i;
                 resultado=true;
@@ -449,7 +449,7 @@ public:
                 aux[i]=f[i];
                 f[i]==NULL;
             }
-            for(int i=pos; i<nEf-1; i++) {
+            for(int i=pos; i<nEl-1; i++) {
                 aux[i]=f[i+1];
                 f[i+1]=NULL;
             }
@@ -457,10 +457,10 @@ public:
             delete[]f;
             f=NULL;
             f=aux;
-            nEf--;
+            nEl--;
         }  {
 
-            for(int i=0; i<nEf-1; i++) {
+            for(int i=0; i<nEl-1; i++) {
                 aux[i]==NULL;
 
             }
@@ -474,15 +474,15 @@ public:
 
     };
 
-    Nodo* pop(){
+    Nodo* extraer(){
 
         if(f==NULL){
             return NULL;
         }
 
         Nodo *aux=NULL;
-        aux=f[nEf-1];
-        eliminarElemento(f[nEf-1]);
+        aux=f[0];
+        eliminarElemento(f[0]);
 
         return aux;
 
@@ -490,7 +490,7 @@ public:
 
     bool pertenece(Nodo *n){
 
-        for(int i=0;i<nEf;i++){
+        for(int i=0;i<nEl;i++){
             if(n==f[i]){/////////////////
                 return true;
             }
@@ -505,7 +505,7 @@ public:
 
 };
 
-
+/*
 class Explorados {
 public:
     Estado **exp;
