@@ -42,13 +42,19 @@ int main()
 
 
     //cout<<estado.existeSolucion()<<endl;
-
+/*//Pruebas Expansion Nodo
     Nodo n;
     n.expandirNodo();
 
     for(int i=0;i<n.fr;i++){
         n.hijos[i]->estado.printEstado();
     }
+
+    n.hijos[0]->expandirNodo();
+
+    for(int i=0;i<n.hijos[0]->fr;i++){
+        n.hijos[0]->hijos[i]->estado.printEstado();
+    }*/
 
     return 0;
 }
