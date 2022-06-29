@@ -31,9 +31,9 @@ public:
 
     Estado(int es[3][3],int cos) { //Constructor
 
-        for(int i=0;i<3;i++){
+        for(int i=0; i<3; i++) {
 
-            for(int j=0;j<3;j++){
+            for(int j=0; j<3; j++) {
 
                 e[i][j]=es[i][j];
 
@@ -280,11 +280,11 @@ public:
 
     }
 
-    void estadoAleatorio(){
+    void estadoAleatorio() {
 
         srand(time(NULL));
 
-        int piezas[]={0,1,2,3,4,5,6,7,8};
+        int piezas[]= {0,1,2,3,4,5,6,7,8};
         bool asignado=false;
         int t=0;
         int x=-1;
@@ -292,10 +292,10 @@ public:
         for(int i=0; i<3; i++) {
             for(int j=0; j<3; j++) {
 
-                while(!asignado){
+                while(!asignado) {
                     t=(rand()%9);
                     x=piezas[t];
-                    if(x!=-1){
+                    if(x!=-1) {
                         e[i][j]=x;
                         piezas[t]=-1;
                         asignado=true;
@@ -307,7 +307,72 @@ public:
 
     }
 
+    int funcionDistanciaManhattan() {
+        int distanciaTotal=0;
+        for(int i=0; i<3; i++) {
+            for(int j=0; j<3; j++) {
+                distanciaTotal+= calcularDistanciaManhattan(e[i][j],i,j);
+            }
+        }
+        return distanciaTotal;
+    };
+
+    int calcularDistanciaManhattan(int num, int posi, int posj) { //1 al 8
+        int aux1, aux2, distancia;
+        switch(num) {
+        case 0:
+            aux1=abs(0-posi);
+            aux2=abs(0-posj);
+            distancia=aux1+aux2;
+            break;
+        case 1:
+            aux1=abs(0-posi);
+            aux2=abs(1-posj);
+            distancia=aux1+aux2;
+            break;
+        case 2:
+            aux1=abs(0-posi);
+            aux2=abs(2-posj);
+            distancia=aux1+aux2;
+            break;
+        case 3:
+            aux1=abs(1-posi);
+            aux2=abs(0-posj);
+            distancia=aux1+aux2;
+            break;
+        case 4:
+            aux1=abs(1-posi);
+            aux2=abs(1-posj);
+            distancia=aux1+aux2;
+            break;
+        case 5:
+            aux1=abs(1-posi);
+            aux2=abs(2-posj);
+            distancia=aux1+aux2;
+            break;
+        case 6:
+            aux1=abs(2-posi);
+            aux2=abs(0-posj);
+            distancia=aux1+aux2;
+            break;
+        case 7:
+            aux1=abs(2-posi);
+            aux2=abs(1-posj);
+            distancia=aux1+aux2;
+            break;
+        case 8:
+            aux1=abs(2-posi);
+            aux2=abs(2-posj);
+            distancia=aux1+aux2;
+            break;
+        default:
+            cout<<"Numero no posible\n";
+        }
+        return distancia;
+    }
 };
+
+
 
 
 class Nodo {
@@ -352,21 +417,21 @@ public:
 
     };
 
-    void imprimirPadres(){
+    void imprimirPadres() {
 
         Nodo *padres[n+1];
         Nodo *p=NULL;
         p=padre->autoApuntador();
 
 
-        for(int i=0;i<n;i++){
+        for(int i=0; i<n; i++) {
             padres[i]=p;
             //p->estado.printEstado();
             p=p->padre;
         }
 
 
-        for(int i=n-1;i>=0;i--){
+        for(int i=n-1; i>=0; i--) {
             padres[i]->estado.printEstado();
         }
 
@@ -505,9 +570,9 @@ public:
 
     };
 
-    Nodo* extraer(){
+    Nodo* extraer() {
 
-        if(f==NULL){
+        if(f==NULL) {
             return NULL;
         }
 
@@ -519,10 +584,10 @@ public:
 
     };
 
-    bool pertenece(Nodo *n){
+    bool pertenece(Nodo *n) {
 
-        for(int i=0;i<nEl;i++){
-            if(n==f[i]){/////////////////
+        for(int i=0; i<nEl; i++) {
+            if(n==f[i]) { /////////////////
                 return true;
             }
         }
