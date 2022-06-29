@@ -1,6 +1,7 @@
 #ifndef CABECERA_H_INCLUDED
 #define CABECERA_H_INCLUDED
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 class Estado {
@@ -275,7 +276,37 @@ public:
 
         return(inversiones%2==0);
 
+
+
     }
+
+    void estadoAleatorio(){
+
+        srand(time(NULL));
+
+        int piezas[]={0,1,2,3,4,5,6,7,8};
+        bool asignado=false;
+        int t=0;
+        int x=-1;
+
+        for(int i=0; i<3; i++) {
+            for(int j=0; j<3; j++) {
+
+                while(!asignado){
+                    t=(rand()%9);
+                    x=piezas[t];
+                    if(x!=-1){
+                        e[i][j]=x;
+                        piezas[t]=-1;
+                        asignado=true;
+                    }
+                }
+                asignado=false;
+            }
+        }
+
+    }
+
 };
 
 
@@ -499,6 +530,7 @@ public:
 
 
     }
+
 
 
 

@@ -12,6 +12,9 @@ int main()
 
 
     estado.printEstado();
+
+    estado.estadoAleatorio();
+    estado.printEstado();
 /*
     cout<< endl;
     cout<< endl;
