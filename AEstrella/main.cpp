@@ -1,86 +1,99 @@
 #include <iostream>
 #include "cabecera.h"
 
-int main()
-{
-    /*
-    cout << "Hello" << endl;
-    cout<<"Prueba Chris"<<endl;
-    cout<<"Prueba Stalin"<<endl;*/
 
-    Estado estado;
+Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
 
+    //node->print();
 
-    estado.printEstado();
+    if(node->estado.testObjetivo()){
+        return node;
+    }
 
-    estado.estadoAleatorio();
-    estado.printEstado();
-/*
-    cout<< endl;
-    cout<< endl;
-    estado.pasoSiguiente(4);
-    estado.printEstado();
-    estado.pasoSiguiente(4);
-    estado.printEstado();
-    estado.pasoSiguiente(2);
-    estado.printEstado();
-    estado.pasoSiguiente(3);
-    estado.printEstado();
-    estado.pasoSiguiente(4);
-    estado.printEstado();
-    estado.pasoSiguiente(3);
-    estado.printEstado();
-    estado.pasoSiguiente(1);
-    estado.printEstado();
-    estado.pasoSiguiente(4);
-    estado.printEstado();
-    estado.pasoSiguiente(4);
-    estado.printEstado();
-    estado.pasoSiguiente(2);
-    estado.printEstado();
-    estado.pasoSiguiente(3);
-    estado.printEstado();
-    estado.pasoSiguiente(3);
-    estado.printEstado();*/
+    node->expandirNodo();
+
+    if(node->fr==0){
+        return NULL;
+    }
+    Nodo *s=NULL;
+    Nodo *best=NULL;
+    Nodo *result=NULL;
+
+    for(int i=0;i<node->fr;i++){
+        s=node->hijos[i];
+        s->f=max(s->g+s->h,node->f);
 
 
-    //cout<<estado.existeSolucion()<<endl;
-/*//Pruebas Expansion Nodo
+    }
+    while(true){
+        best=node->menorFValue();
+        if(best->f>f_limit){
+            *f_cost=best->f;
+
+            return NULL;
+        }
+
+
+        int alternative=node->segundoMenorFValue();
+        //best->print();
+
+        result=RBFS(best,min(f_limit,alternative),&best->f);
+
+        if(result!=NULL){
+
+            return result;
+        }
+    }
+}
+
+
+
+Nodo * busquedaAEstrella(Nodo *n){
+    int x=0;
+    return RBFS(n,999,&x);
+
+}
+
+
+int main() {
+
     Nodo n;
-    n.expandirNodo();
 
-    for(int i=0;i<n.fr;i++){
-        n.hijos[i]->estado.printEstado();
+
+
+
+    while(!n.estado.existeSolucion()) {
+        n.estado.estadoAleatorio();
+
+
     }
+    cout<<"Estado inicial:"<<endl;
+    n.estado.printEstado();
 
-    n.hijos[0]->expandirNodo();
+    if(n.estado.existeSolucion()) {
+        Nodo *sol;
 
-    for(int i=0;i<n.hijos[0]->fr;i++){
-        n.hijos[0]->hijos[i]->estado.printEstado();
-    }*/
-/*
-    //pruebas lista/*
-    Nodo n1;
-    Nodo n2;
-    Nodo n3;
 
-    Lista l;
+        sol=busquedaAEstrella(n.autoApuntador());
 
-    l.nuevoElemento(n1.autoApuntador());
-    l.nuevoElemento(n1.autoApuntador());
-    l.nuevoElemento(n1.autoApuntador());
+        if(sol==NULL) {
+            cout<<"No se encontro la solucion"<<endl;
+        } else {
 
-    for(int i=0;i<l.nEl;i++){
-        l.f[i]->estado.printEstado();
+            cout<<"Pasos:"<<endl;
+            sol->imprimirPadres();
+
+            cout<<"Solucion:"<<endl;
+            sol->estado.printEstado();
+
+            cout<<"Numero de Pasos:"<<endl;
+            cout<<sol->n<<endl;
+        }
+
+    } else {
+
+        cout<<"El estado no alcanzara la solucion"<<endl;
     }
-    cout<<"---------"<<endl;
-
-    l.extraer();
-
-    for(int i=0;i<l.nEl;i++){
-        l.f[i]->estado.printEstado();
-    }
-*/
 
     return 0;
 }

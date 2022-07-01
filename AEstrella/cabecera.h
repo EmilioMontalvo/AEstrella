@@ -8,28 +8,27 @@ class Estado {
 public:
     //Matriz que se usara para representar los estados del 8 puzle
     int e[3][3];
-    int costo;
+
 
     Estado() { //Constructor inicializa el puzzle en el orden que deberia estar
-        //el costo se inicializa en cero
-        costo =0;
-        //Fila Superior
-        e[0][0]=0;
-        e[0][1]=1;
-        e[0][2]=2;
+        for(int i=0; i<3; i++) {
 
-        //Fila Intermedia
-        e[1][0]=3;
-        e[1][1]=4;
-        e[1][2]=5;
+            for(int j=0; j<3; j++) {
 
-        //Fila Inferior
-        e[2][0]=6;
-        e[2][1]=7;
-        e[2][2]=8;
+                e[i][j]=0;
+
+            }
+
+        }
+
+        estadoAleatorio();
+
     };
 
-    Estado(int es[3][3],int cos) { //Constructor
+
+
+
+    Estado(int es[3][3]) { //Constructor
 
         for(int i=0; i<3; i++) {
 
@@ -40,12 +39,14 @@ public:
             }
 
         }
-        costo=cos;
+
     };
 
     Estado* autoApuntador() {
         return this;
     };
+
+
 
     //FUNCIONES
     //Imprimir estado
@@ -59,8 +60,12 @@ public:
 
             cout<<endl;
         }
-        cout<<"Costo actual= "<< costo<<endl;
+        cout<<endl;
+
+
     };
+
+
     //METODO PASO SIGUIENTE
     bool pasoSiguiente(int accion) {
         //variable que almacena la posicion f = fila c= columna
@@ -77,153 +82,153 @@ public:
                 }
             }
         }
-        cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
+        //cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
         switch(accion) {
         case 1://ARRIBA
             if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) {
-                cout<< "No se puede realizar accion"<< endl;
+                //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
             if(f==1 && c==0) {
                 pasar(f,c,0,0);
-                costo++;
+
                 break;
             }
             if(f==1 && c==1) {
                 pasar(f,c,0,1);
-                costo++;
+
                 break;
             }
             if(f==1 && c==2) {
                 pasar(f,c,0,2);
-                costo++;
+
                 break;
             }
             if(f==2 && c==0) {
                 pasar(f,c,1,0);
-                costo++;
+
                 break;
             }
             if(f==2 && c==1) {
                 pasar(f,c,1,1);
-                costo++;
+
                 break;
             }
             if(f==2 && c==2) {
                 pasar(f,c,1,2);
-                costo++;
+
                 break;
             }
             break;
         case 2: //ABAJO
             if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)) {
-                cout<< "No se puede realizar accion" << endl;
+                //cout<< "No se puede realizar accion" << endl;
                 return false;
                 break;
             }
             if(f==1 && c==0) {
                 pasar(f,c,2,0);
-                costo++;
+
                 break;
             }
             if(f==1 && c==1) {
                 pasar(f,c,2,1);
-                costo++;
+
                 break;
             }
             if(f==1 && c==2) {
                 pasar(f,c,2,2);
-                costo++;
+
                 break;
             }
             if(f==0 && c==0) {
                 pasar(f,c,1,0);
-                costo++;
+
                 break;
             }
             if(f==0 && c==1) {
                 pasar(f,c,1,1);
-                costo++;
+
                 break;
             }
             if(f==0 && c==2) {
                 pasar(f,c,1,2);
-                costo++;
+
                 break;
             }
             break;
         case 3: //IZQUIERDA
             if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)) {
-                cout<< "No se puede realizar accion"<< endl;
+                //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
             if(f==0 && c==1) {
                 pasar(f,c,0,0);
-                costo++;
+
                 break;
             }
             if(f==1 && c==1) {
                 pasar(f,c,1,0);
-                costo++;
+
                 break;
             }
             if(f==2 && c==1) {
                 pasar(f,c,2,0);
-                costo++;
+
                 break;
             }
             if(f==0 && c==2) {
                 pasar(f,c,0,1);
-                costo++;
+
                 break;
             }
             if(f==1 && c==2) {
                 pasar(f,c,1,1);
-                costo++;
+
                 break;
             }
             if(f==2 && c==2) {
                 pasar(f,c,2,1);
-                costo++;
+
                 break;
             }
             break;
         case 4: //derecha
             if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)) {
-                cout<< "No se puede realizar accion"<< endl;
+                //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
             if(f==0 && c==1) {
                 pasar(f,c,0,2);
-                costo++;
+
                 break;
             }
             if(f==1 && c==1) {
                 pasar(f,c,1,2);
-                costo++;
+
                 break;
             }
             if(f==2 && c==1) {
                 pasar(f,c,2,2);
-                costo++;
+
                 break;
             }
             if(f==0 && c==0) {
                 pasar(f,c,0,1);
-                costo++;
+
                 break;
             }
             if(f==1 && c==0) {
                 pasar(f,c,1,1);
-                costo++;
+
                 break;
             }
             if(f==2 && c==0) {
                 pasar(f,c,2,1);
-                costo++;
+
                 break;
             }
             break;
@@ -233,7 +238,7 @@ public:
     //FUNCION PASAR (INTERCAMNBIO)
     void pasar(int f,int c,int nf,int nc) {
         //f y c = fila y columna actual   && nf y nc = siguiente fila y columna a realizar el cambio.
-        cout<<"pasa ----> "<<f<<" "<<c<<"\n"<<"pasa ----> "<<nf<<" "<<nc<<"\n"<<endl;
+        //cout<<"pasa ----> "<<f<<" "<<c<<"\n"<<"pasa ----> "<<nf<<" "<<nc<<"\n"<<endl;
         int aux;
         aux= e[nf][nc];
         e[nf][nc]=e[f][c];
@@ -242,9 +247,23 @@ public:
     Estado getEstado() {
         return *this;
     }
+
     bool testObjetivo() {
-        return(e[0][0]==0 && e[1][0]==1 && e[1][0]==2  && e[1][0]==3 && e[1][0]==4 && e[1][0]==5 && e[1][0]==6 && e[1][0]==7 && e[1][0]==8);
+        int c=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+
+                if(e[i][j]!=c){
+                    return false;
+                }
+                c++;
+            }
+
+        }
+
+        return true;
     }
+
 
     bool existeSolucion() {
 
@@ -384,6 +403,11 @@ public:
     int fr;//factor de ramificacion
     int n;//profundidad
 
+    int f;
+    int h;
+    int g;
+
+
 
 
     Nodo() {
@@ -392,9 +416,14 @@ public:
         hijos=NULL;
         fr=0;
         n=0;
+        f=0;
+        h=0;
+        g=0;
 
 
     };
+
+
 
     Nodo(Estado es) {
         estado=es;
@@ -402,6 +431,21 @@ public:
         hijos=NULL;
         fr=0;
         n=0;
+        f=0;
+        h=0;
+        g=0;
+
+    };
+
+    Nodo(Nodo *nod) {
+        estado=nod->estado;
+        padre=nod->padre;
+        hijos=nod->hijos;
+        fr=nod->fr;
+        n=nod->n;
+        f=nod->f;
+        h=nod->h;
+        g=nod->g;
 
     };
 
@@ -416,6 +460,34 @@ public:
 
 
     };
+
+    bool comparar(Nodo *n){
+
+        for(int i=0;i<3;i++){
+            for(int j=0;i<3;i++){
+                if(estado.e[i]!=n->estado.e[i]){
+                    return false;
+                }
+            }
+        }
+
+        if(f!=n->f){
+            return false;
+        }
+        return true;
+
+    }
+
+    void print(){
+        estado.printEstado();
+
+        cout<<"f: "<<f<<endl;
+        cout<<"h: "<<h<<endl;
+        cout<<"g: "<<g<<endl;
+        cout<<"n: "<<g<<endl;
+
+
+    }
 
     void imprimirPadres() {
 
@@ -448,10 +520,10 @@ public:
 
         for(int i=1; i<=4; i++) {
 
-            Estado *es =(new Estado(estado.e,estado.costo));
+            Estado *es =(new Estado(estado.e));
 
 
-            if(es->pasoSiguiente(i)) {
+            if(es->pasoSiguiente(i) && es->existeSolucion()) {
                 mes[nh]=es;
                 nh++;
                 //es->printEstado();
@@ -475,252 +547,51 @@ public:
             hijos[i]->padre=this;
             hijos[i]->n=n+1;
             hijos[i]->estado=mes[i]->getEstado();
+            hijos[i]->h=hijos[i]->estado.funcionDistanciaManhattan();
+            hijos[i]->g=this->g+1;
+            hijos[i]->f=hijos[i]->h+hijos[i]->g;
+
 
         }
 
     };
+
+    Nodo * menorFValue() {
+
+        Nodo * menor;
+        menor=NULL;
+        if(fr==0)return NULL;
+        menor=hijos[0];
+        for(int i=1; i<fr; i++) {
+            if(menor->f > hijos[i]->f) {
+                menor=hijos[i];
+            }
+        }
+
+        return menor;
+
+    }
+
+
+    int segundoMenorFValue() {
+
+        int primero=menorFValue()->f;
+        int segundo=9999;
+
+        for(int i=0; i<fr; i++) {
+            int x=hijos[i]->f;
+            if( x<segundo && x!=primero) {
+                segundo=x;
+            }
+        }
+
+        return segundo;
+
+    }
 
 
 
 };
-
-
-class Lista {
-public:
-    Nodo **f;
-    int nEl;
-
-    Lista() {
-        f=NULL;
-        nEl=0;
-
-    }
-
-    ~Lista() {
-        for(int C=0; C<nEl; C++) {
-            f[C]=NULL;
-        }
-        delete[] f;
-        f=NULL;
-        nEl=0;
-
-
-    };
-
-    void nuevoElemento(Nodo *n) {
-        Nodo **aux;
-        aux=new Nodo*[nEl+1];
-        for(int i=0; i<nEl; i++) {
-            aux[i]=f[i];
-            f[i]=NULL;
-        }
-        aux[nEl]=n;
-
-        if(nEl>0)
-            delete[] f;
-
-        f=NULL;
-        f=aux;
-        nEl++;
-
-    };
-
-    bool eliminarElemento(Nodo *n) {
-
-        bool resultado=false;
-        Nodo **aux;
-        aux=new Nodo*[nEl-1];
-        int pos =-1;
-
-        for(int i=0; i<nEl; i++) {
-            if(n==f[i]) {
-                pos=i;
-                resultado=true;
-                break;
-            }
-        }
-
-        if(pos!=-1) {
-            for(int i=0; i<pos; i++) {
-                aux[i]=f[i];
-                f[i]==NULL;
-            }
-            for(int i=pos; i<nEl-1; i++) {
-                aux[i]=f[i+1];
-                f[i+1]=NULL;
-            }
-
-            delete[]f;
-            f=NULL;
-            f=aux;
-            nEl--;
-        }  {
-
-            for(int i=0; i<nEl-1; i++) {
-                aux[i]==NULL;
-
-            }
-            delete[] aux;
-            aux=NULL;
-
-        }
-
-        return resultado;
-
-
-    };
-
-    Nodo* extraer() {
-
-        if(f==NULL) {
-            return NULL;
-        }
-
-        Nodo *aux=NULL;
-        aux=f[0];
-        eliminarElemento(f[0]);
-
-        return aux;
-
-    };
-
-    bool pertenece(Nodo *n) {
-
-        for(int i=0; i<nEl; i++) {
-            if(n==f[i]) { /////////////////
-                return true;
-            }
-        }
-        return false;
-
-
-    }
-
-
-
-
-
-};
-
-/*
-class Explorados {
-public:
-    Estado **exp;
-    int nEE;
-
-    Explorados() {
-        exp=NULL;
-        nEE=0;
-
-    }
-
-    ~Explorados() {
-        for(int C=0; C<nEE; C++) {
-            exp[C]=NULL;
-        }
-        delete[] exp;
-        exp=NULL;
-        nEE=0;
-
-
-    };
-
-    void nuevoElemento(Estado *n) {
-        Estado **aux;
-        aux=new Estado*[nEE+1];
-        for(int i=0; i<nEE; i++) {
-            aux[i]=exp[i];
-            exp[i]=NULL;
-        }
-        aux[nEE]=n;
-
-        if(nEE>0)
-            delete[] exp;
-
-        exp=NULL;
-        exp=aux;
-        nEE++;
-
-    };
-
-    bool eliminarElemento(Estado *n) {
-
-        bool resultado=false;
-        Estado **aux;
-        aux=new Estado*[nEE-1];
-        int pos =-1;
-
-         for(int i=0; i<nEE; i++) {
-            if(n==exp[i]) {
-                pos=i;
-                resultado=true;
-                break;
-            }
-        }
-
-         if(pos!=-1) {
-             for(int i=0; i<pos; i++) {
-                aux[i]=exp[i];
-                exp[i]==NULL;
-            }
-             for(int i=pos; i<nEE-1; i++) {
-                aux[i]=exp[i+1];
-                exp[i+1]=NULL;
-            }
-
-            delete[]exp;
-            exp=NULL;
-            exp=aux;
-            nEE--;
-        }  {
-
-             for(int i=0; i<nEE-1; i++) {
-                aux[i]==NULL;
-
-            }
-            delete[] aux;
-            aux=NULL;
-
-        }
-
-        return resultado;
-
-
-    };
-
-    Estado* pop(){
-
-        if(exp==NULL){
-            return NULL;
-        }
-
-        Estado *aux=NULL;
-        aux=exp[nEE-1];
-        eliminarElemento(exp[nEE-1]);
-
-        return aux;
-
-    };
-
-    bool pertenece(Estado *es){
-
-        for(int i=0;i<nEE;i++){
-            if(es->e[0]==exp[i]->e[0] && es->e[1]==exp[i]->e[1] && es->e[2]==exp[i]->e[2]){
-                return true;
-            }
-        }
-        return false;
-
-
-    }
-
-
-
-
-};
-*/
-
-
 
 
 
