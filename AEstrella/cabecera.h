@@ -83,15 +83,17 @@ public:
             }
         }
         //cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
+        //Dependiendo de la variable accion que se recibe
         switch(accion) {
         case 1://ARRIBA
-            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) {
+            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) { //Si el espacio vacio esta en los limite de arriba
                 //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
-            if(f==1 && c==0) {
-                pasar(f,c,0,0);
+            //A continuacion va analizando todos los posibles casillerros donde esta el espacio en blanco
+            if(f==1 && c==0) { //Si el espacio vacio esta en la pos [1,0]
+                pasar(f,c,0,0); //Mover el espacio vacio actual hacia arriba -> [0,0]
 
                 break;
             }
@@ -105,8 +107,8 @@ public:
 
                 break;
             }
-            if(f==2 && c==0) {
-                pasar(f,c,1,0);
+            if(f==2 && c==0) { //Si el espacio vacio esta en la pos [fila 2, columna 0]
+                pasar(f,c,1,0); //Mover el espacio vacio actual hacia arriba -> [1,0]
 
                 break;
             }
@@ -122,13 +124,13 @@ public:
             }
             break;
         case 2: //ABAJO
-            if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)) {
+            if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)) { //Cuando el espacio vacio esta en los limites inferiores
                 //cout<< "No se puede realizar accion" << endl;
                 return false;
                 break;
             }
-            if(f==1 && c==0) {
-                pasar(f,c,2,0);
+            if(f==1 && c==0) { //Si el espacio vacio esta en la pos [fila 1, columna 0]
+                pasar(f,c,2,0); //Mover el espacio vacio actual hacia abajo -> [2,0]
 
                 break;
             }
@@ -159,13 +161,13 @@ public:
             }
             break;
         case 3: //IZQUIERDA
-            if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)) {
+            if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)) { //Cuando el espacio vacio esta en los limites de la izquierda del tablero
                 //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
-            if(f==0 && c==1) {
-                pasar(f,c,0,0);
+            if(f==0 && c==1) { //Si el espacio vacio esta en la pos [fila 0, columna 1]
+                pasar(f,c,0,0); //Mover el espacio vacio actual hacia la izquierda -> [0,0]
 
                 break;
             }
@@ -196,13 +198,13 @@ public:
             }
             break;
         case 4: //derecha
-            if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)) {
+            if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)) { //Cuando el espacio vacio esta en los limites de la derecha del tablero
                 //cout<< "No se puede realizar accion"<< endl;
                 return false;
                 break;
             }
-            if(f==0 && c==1) {
-                pasar(f,c,0,2);
+            if(f==0 && c==1) { //Si el espacio vacio esta en la pos [fila 0, columna 1]
+                pasar(f,c,0,2); //Mover el espacio vacio actual hacia la derecha -> [0,2]
 
                 break;
             }
@@ -239,15 +241,18 @@ public:
     void pasar(int f,int c,int nf,int nc) {
         //f y c = fila y columna actual   && nf y nc = siguiente fila y columna a realizar el cambio.
         //cout<<"pasa ----> "<<f<<" "<<c<<"\n"<<"pasa ----> "<<nf<<" "<<nc<<"\n"<<endl;
+        //A continuacion se guarda el numero de la casilla a donde se va mover el espacio vacio
         int aux;
         aux= e[nf][nc];
-        e[nf][nc]=e[f][c];
-        e[f][c]=aux;
+        e[nf][nc]=e[f][c]; //Se le asigna el espacio vacio  a la nueva casilla
+        e[f][c]=aux; //Cambia
     }
     Estado getEstado() {
         return *this;
     }
 
+    //Funcion para determinar si el estado actual cumple con las condiciones del estado objetivo (tablero ordenado ascend.)
+    //Retorna True si se cumplle la condicion del estado final || Retorna Falso si el estado actual no es el estado final
     bool testObjetivo() {
         int c=0;
         for(int i=0;i<3;i++){
@@ -264,7 +269,8 @@ public:
         return true;
     }
 
-
+    //Funcion que devuelve True si el estado inicial alcanzara un estado solucion
+    //Si el #de inversiones es par existe solucion, caso contrario no existe solucion
     bool existeSolucion() {
 
         int inversiones=0;
@@ -273,7 +279,7 @@ public:
 
         for(int i=0; i<3; i++) {
             for(int j=0; j<3; j++) {
-
+                //Se va almacenar los numeros del tablero en un vector de 1 dimension en el orden en que este el estado actual
                 aux[c]=e[i][j];
 
                 c++;
@@ -283,8 +289,8 @@ public:
 
         for(int i=0; i<9; i++) {
             for(int j=i+1; j<9; j++) {
-
-
+                //Ejm: [1,2,3,4,_,6,7,5,8] -> Se puede invertir el [6,5], [7,5]
+                //Se cuenta como una inversion cuando el numero actual (i) es mayor que el siguiente (i+1) y  son distintos del espacio vacio
                 if(aux[i]>aux[j] && aux[i]!=0 && aux[j]!=0 ) {
                     inversiones++;
                 }
@@ -325,19 +331,22 @@ public:
         }
 
     }
-
+    //Metodo que devuelve el valor numerico de la distancia Manhattan en el estado actual
+    //La distancia Manhattan es la suma de las ditancias de cada casilla actual que conforman el tablero para llegar a su casilla final o solucion
     int funcionDistanciaManhattan() {
         int distanciaTotal=0;
         for(int i=0; i<3; i++) {
             for(int j=0; j<3; j++) {
+                //Recorre la matriz del estado actual e[][] y va sumando la distancia individual de cada casilla
                 distanciaTotal+= calcularDistanciaManhattan(e[i][j],i,j);
             }
         }
         return distanciaTotal;
     };
-
+    //Funcion que recibe el valor numerico de la casilla y su posicion actual en el tablero
     int calcularDistanciaManhattan(int num, int posi, int posj) { //1 al 8
         int aux1, aux2, distancia;
+        //Dependiendo del valor numerico de la casilla actual, para determinar la casilla solucion o final
         switch(num) {
         case 0:
             aux1=abs(0-posi);
