@@ -4,8 +4,6 @@
 
 Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
 
-    //node->print();
-
     if(node->estado.testObjetivo()){
         return node;
     }
@@ -35,7 +33,7 @@ Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
 
 
         int alternative=node->segundoMenorFValue();
-        //best->print();
+
 
         result=RBFS(best,min(f_limit,alternative),&best->f);
 
