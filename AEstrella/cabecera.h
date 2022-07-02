@@ -20,7 +20,7 @@ public:
             }
 
         }
-
+        //llama el metodo aleatorio
         estadoAleatorio();
 
     };
