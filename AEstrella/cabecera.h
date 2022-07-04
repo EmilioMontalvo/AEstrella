@@ -42,6 +42,7 @@ public:
 
     };
 
+    ////Retorna un puntero hacia a si mismo
     Estado* autoApuntador() {
         return this;
     };
@@ -49,7 +50,7 @@ public:
 
 
     //FUNCIONES
-    //Imprimir estado
+    //Metodo para imprimir estados
     void printEstado() {
         int filas = (sizeof(e)/sizeof(e[0]));
         int columnas = (sizeof(e[0])/sizeof(e[0][0]));
@@ -68,12 +69,12 @@ public:
 
     //METODO PASO SIGUIENTE
     bool pasoSiguiente(int accion) {
-        //variable que almacena la posicion f = fila c= columna
+        //variables que almacena la posicion f = fila c= columna
         int f,c;
 
         //primero determinamos la posición en la que se encuentra el espacio vacio
-        int filas = (sizeof(e)/sizeof(e[0]));
-        int columnas = (sizeof(e[0])/sizeof(e[0][0]));
+        int filas = (sizeof(e)/sizeof(e[0]));//la posicion en la fila
+        int columnas = (sizeof(e[0])/sizeof(e[0][0]));//la posicion en la fila
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 if(e[i][j]==0) {
@@ -85,158 +86,159 @@ public:
         //cout<<"posicion actual vacia ----> "<<f<<" "<<c<<"\n"<<endl;
         //Dependiendo de la variable accion que se recibe
         switch(accion) {
-        case 1://ARRIBA
-            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) { //Si el espacio vacio esta en los limite de arriba
-                //cout<< "No se puede realizar accion"<< endl;
-                return false;
+        case 1://Si es hacia arriba
+            if((f==0 && c==0)||(f==0 && c==1)||(f==0 && c==2)) { //Si el espacio vacio está en los limite de arriba
+                return false;//no realiza la accción
                 break;
             }
-            //A continuacion va analizando todos los posibles casillerros donde esta el espacio en blanco
+            //Analiza todos los posibles casillerros donde esta el espacio en blanco [fila, columna]
             if(f==1 && c==0) { //Si el espacio vacio esta en la pos [1,0]
                 pasar(f,c,0,0); //Mover el espacio vacio actual hacia arriba -> [0,0]
 
                 break;
             }
-            if(f==1 && c==1) {
-                pasar(f,c,0,1);
+            if(f==1 && c==1) {//Si el espacio vacio y esta en la posición [1,1]
+                pasar(f,c,0,1);//Mover el espacio vacio actual hacia arriba -> [0,1]
 
                 break;
             }
-            if(f==1 && c==2) {
-                pasar(f,c,0,2);
+            if(f==1 && c==2) { //Si el espacio vacio esta y esta la posición [1,2]
+                pasar(f,c,0,2);//Mover el espacio vacio actual hacia arriba -> [0,2]
 
                 break;
             }
-            if(f==2 && c==0) { //Si el espacio vacio esta en la pos [fila 2, columna 0]
+            if(f==2 && c==0) { //Si el espacio vacio esta en la pos [2,0]
                 pasar(f,c,1,0); //Mover el espacio vacio actual hacia arriba -> [1,0]
 
                 break;
             }
-            if(f==2 && c==1) {
-                pasar(f,c,1,1);
+            if(f==2 && c==1){ //Si el espacio vacio esta en la pos [2,1]
+                pasar(f,c,1,1); //Mover el espacio vacio actual hacia arriba -> [1,1]
 
                 break;
             }
-            if(f==2 && c==2) {
-                pasar(f,c,1,2);
+            if(f==2 && c==2) {//Si el espacio vacio esta en la pos [2,2]
+                pasar(f,c,1,2); //Mover el espacio vacio actual hacia arriba -> [1,2]
 
                 break;
             }
             break;
-        case 2: //ABAJO
+         //Analiza todos los posibles casillerros donde esta el espacio en blanco [fila, columna]
+        case 2: //Si es hacia abajo
             if((f==2 && c==0)||(f==2 && c==1)||(f==2 && c==2)) { //Cuando el espacio vacio esta en los limites inferiores
-                //cout<< "No se puede realizar accion" << endl;
-                return false;
+                return false;//No se  realiza la accion
                 break;
             }
-            if(f==1 && c==0) { //Si el espacio vacio esta en la pos [fila 1, columna 0]
+            if(f==1 && c==0) { //Si el espacio vacio esta en la posición [1, 0]
                 pasar(f,c,2,0); //Mover el espacio vacio actual hacia abajo -> [2,0]
 
                 break;
             }
-            if(f==1 && c==1) {
-                pasar(f,c,2,1);
+            if(f==1 && c==1) { //Si el espacio vacio esta en la posición [1, 1]
+                pasar(f,c,2,1);//Mover el espacio vacio actual hacia abajo -> [2,1]
 
                 break;
             }
-            if(f==1 && c==2) {
-                pasar(f,c,2,2);
+            if(f==1 && c==2) { //Si el espacio vacio esta en la posición [1, 2]
+                pasar(f,c,2,2); //Mover el espacio vacio actual hacia abajo -> [2,2]
 
                 break;
             }
-            if(f==0 && c==0) {
-                pasar(f,c,1,0);
+            if(f==0 && c==0) { //Si el espacio vacio esta en la posición [0, 0]
+                pasar(f,c,1,0); //Mover el espacio vacio actual hacia abajo -> [1,0]
 
                 break;
             }
-            if(f==0 && c==1) {
-                pasar(f,c,1,1);
+            if(f==0 && c==1) { //Si el espacio vacio esta en la posición [0, 1]
+                pasar(f,c,1,1);//Mover el espacio vacio actual hacia abajo -> [1,1]
 
                 break;
             }
-            if(f==0 && c==2) {
-                pasar(f,c,1,2);
+            if(f==0 && c==2) {//Si el espacio vacio esta en la posición [0, 2]
+                pasar(f,c,1,2);//Mover el espacio vacio actual hacia abajo -> [1,2]
 
                 break;
             }
             break;
-        case 3: //IZQUIERDA
+         //Analiza todos los posibles casillerros donde esta el espacio en blanco [fila, columna]
+        case 3: //Si es hacia la izquierda
             if((f==0 && c==0)||(f==1 && c==0)||(f==2 && c==0)) { //Cuando el espacio vacio esta en los limites de la izquierda del tablero
-                //cout<< "No se puede realizar accion"<< endl;
-                return false;
+                return false;//No se realiza la accion
                 break;
             }
-            if(f==0 && c==1) { //Si el espacio vacio esta en la pos [fila 0, columna 1]
+            if(f==0 && c==1) { //Si el espacio vacio esta en la posición [0, 1]
                 pasar(f,c,0,0); //Mover el espacio vacio actual hacia la izquierda -> [0,0]
 
                 break;
             }
-            if(f==1 && c==1) {
-                pasar(f,c,1,0);
+            if(f==1 && c==1) { //Si el espacio vacio esta en la posición [1, 1]
+                pasar(f,c,1,0);//Mover el espacio vacio actual hacia la izquierda -> [1,0]
 
                 break;
             }
-            if(f==2 && c==1) {
-                pasar(f,c,2,0);
+            if(f==2 && c==1) { //Si el espacio vacio esta en la posición [2, 1]
+                pasar(f,c,2,0);//Mover el espacio vacio actual hacia la izquierda -> [2,0]
 
                 break;
             }
-            if(f==0 && c==2) {
-                pasar(f,c,0,1);
+            if(f==0 && c==2) {//Si el espacio vacio esta en la posición [0, 2]
+                pasar(f,c,0,1);//Mover el espacio vacio actual hacia la izquierda -> [0,1]
 
                 break;
             }
-            if(f==1 && c==2) {
-                pasar(f,c,1,1);
+            if(f==1 && c==2) {//Si el espacio vacio esta en la posición [1, 2]
+                pasar(f,c,1,1);//Mover el espacio vacio actual hacia la izquierda -> [1,1]
 
                 break;
             }
-            if(f==2 && c==2) {
-                pasar(f,c,2,1);
+            if(f==2 && c==2) { //Si el espacio vacio esta en la posición [2, 2]
+                pasar(f,c,2,1);//Mover el espacio vacio actual hacia la izquierda -> [2,1]
 
                 break;
             }
             break;
-        case 4: //derecha
+         //Analiza todos los posibles casillerros donde esta el espacio en blanco [fila, columna]
+        case 4: //Si es hacia la derecha
             if((f==0 && c==2)||(f==1 && c==2)||(f==2 && c==2)) { //Cuando el espacio vacio esta en los limites de la derecha del tablero
-                //cout<< "No se puede realizar accion"<< endl;
-                return false;
+                return false;//No se realiza la accion
                 break;
             }
-            if(f==0 && c==1) { //Si el espacio vacio esta en la pos [fila 0, columna 1]
+            if(f==0 && c==1) { //Si el espacio vacio esta en la posicion [ 0, 1]
                 pasar(f,c,0,2); //Mover el espacio vacio actual hacia la derecha -> [0,2]
 
                 break;
             }
-            if(f==1 && c==1) {
-                pasar(f,c,1,2);
+            if(f==1 && c==1) {//Si el espacio vacio esta en la posicion [ 1, 1]
+                pasar(f,c,1,2); //Mover el espacio vacio actual hacia la derecha -> [1,2]
 
                 break;
             }
-            if(f==2 && c==1) {
-                pasar(f,c,2,2);
+            if(f==2 && c==1) { //Si el espacio vacio esta en la pos [ 2, 1]
+                pasar(f,c,2,2); //Mover el espacio vacio actual hacia la derecha -> [2,2]
 
                 break;
             }
-            if(f==0 && c==0) {
-                pasar(f,c,0,1);
+            if(f==0 && c==0) { //Si el espacio vacio esta en la posicion [ 0, 0]
+                pasar(f,c,0,1); //Mover el espacio vacio actual hacia la derecha -> [0,1]
 
                 break;
             }
-            if(f==1 && c==0) {
-                pasar(f,c,1,1);
+            if(f==1 && c==0) { //Si el espacio vacio esta en la posicion [ 1, 0]
+                pasar(f,c,1,1);//Mover el espacio vacio actual hacia la derecha -> [1,1]
 
                 break;
             }
-            if(f==2 && c==0) {
-                pasar(f,c,2,1);
+            if(f==2 && c==0) {//Si el espacio vacio esta en la posicion [ 2, 0]
+                pasar(f,c,2,1);//Mover el espacio vacio actual hacia la derecha -> [2,1]
 
                 break;
             }
             break;
-        }
+
+            }
         return true;
-    }
+}
+
     //FUNCION PASAR (INTERCAMNBIO)
     void pasar(int f,int c,int nf,int nc) {
         //f y c = fila y columna actual   && nf y nc = siguiente fila y columna a realizar el cambio.
@@ -251,26 +253,25 @@ public:
         return *this;
     }
 
-    //Funcion para determinar si el estado actual cumple con las condiciones del estado objetivo (tablero ordenado ascend.)
-    //Retorna True si se cumplle la condicion del estado final || Retorna Falso si el estado actual no es el estado final
+    //Esta funcion sirve para determinar si el estado actual que cumpla con las condiciones del estado objetivo
     bool testObjetivo() {
         int c=0;
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
 
                 if(e[i][j]!=c){
-                    return false;
+                    return false;//Retorna false si estado actual no coicide con el estado final.
                 }
                 c++;
             }
 
         }
 
-        return true;
+        return true;//Retorna true si cumple con el estado final
     }
 
-    //Funcion que devuelve True si el estado inicial alcanzara un estado solucion
-    //Si el #de inversiones es par existe solucion, caso contrario no existe solucion
+
+    //Para realizar el numero de inversiones si existe solucion, si no encuentra no existe solucion
     bool existeSolucion() {
 
         int inversiones=0;
@@ -279,8 +280,7 @@ public:
 
         for(int i=0; i<3; i++) {
             for(int j=0; j<3; j++) {
-                //Se va almacenar los numeros del tablero en un vector de 1 dimension en el orden en que este el estado actual
-                aux[c]=e[i][j];
+                aux[c]=e[i][j];//almacenar los numeros del tablero en un vector de 1 dimension en el orden en que este el estado actual
 
                 c++;
             }
@@ -297,19 +297,14 @@ public:
             }
         }
 
-
-
-        return(inversiones%2==0);
-
-
+        return(inversiones%2==0);//Funcion devuelve un True si el estado inicial llega un estado solucion
 
     }
 
+    //Funcion que escoje un estado de manera aleatorio
     void estadoAleatorio() {
-
         srand(time(NULL));
-
-        int piezas[]= {0,1,2,3,4,5,6,7,8};
+        int piezas[]= {0,1,2,3,4,5,6,7,8};//Las piezas en el tablero
         bool asignado=false;
         int t=0;
         int x=-1;
@@ -317,22 +312,22 @@ public:
         for(int i=0; i<3; i++) {
             for(int j=0; j<3; j++) {
 
-                while(!asignado) {
+                while(!asignado) {//Mientra sea diferente de falso hacer
                     t=(rand()%9);
                     x=piezas[t];
-                    if(x!=-1) {
-                        e[i][j]=x;
+                    if(x!=-1) {//Si la pieza es diferente de -1
+                        e[i][j]=x;//se guarda la posición
                         piezas[t]=-1;
-                        asignado=true;
+                        asignado=true;// retorna un true
                     }
                 }
-                asignado=false;
+                asignado=false;//Si la pieza es igual, retorna false
             }
         }
 
     }
     //Metodo que devuelve el valor numerico de la distancia Manhattan en el estado actual
-    //La distancia Manhattan es la suma de las ditancias de cada casilla actual que conforman el tablero para llegar a su casilla final o solucion
+    //La distancia Manhattan suma de las ditancias de cada casilla actual que conforman el tablero para llegar a su casilla final o solucion
     int funcionDistanciaManhattan() {
         int distanciaTotal=0;
         for(int i=0; i<3; i++) {
@@ -343,60 +338,61 @@ public:
         }
         return distanciaTotal;
     };
+
     //Funcion que recibe el valor numerico de la casilla y su posicion actual en el tablero
     int calcularDistanciaManhattan(int num, int posi, int posj) { //1 al 8
         int aux1, aux2, distancia;
-        //Dependiendo del valor numerico de la casilla actual, para determinar la casilla solucion o final
+        //Dependiendo del caso el valor numerico de la casilla actual, para determinar la casilla solucion o final
         switch(num) {
-        case 0:
-            aux1=abs(0-posi);
-            aux2=abs(0-posj);
-            distancia=aux1+aux2;
+        case 0://Si estamos en la casilla [0,0]
+            aux1=abs(0-posi);//Calcula la distancia en i
+            aux2=abs(0-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 1:
-            aux1=abs(0-posi);
-            aux2=abs(1-posj);
-            distancia=aux1+aux2;
+        case 1://Si estamos en la casilla [0,1]
+            aux1=abs(0-posi);//Calcula la distancia en i
+            aux2=abs(1-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 2:
-            aux1=abs(0-posi);
-            aux2=abs(2-posj);
-            distancia=aux1+aux2;
+        case 2://Si estamos en la casilla [0,2]
+            aux1=abs(0-posi);//Calcula la distancia en i
+            aux2=abs(2-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 3:
-            aux1=abs(1-posi);
-            aux2=abs(0-posj);
-            distancia=aux1+aux2;
+        case 3://Si estamos en la casilla [1,0]
+            aux1=abs(1-posi);//Calcula la distancia en i
+            aux2=abs(0-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 4:
-            aux1=abs(1-posi);
-            aux2=abs(1-posj);
-            distancia=aux1+aux2;
+        case 4://Si estamos en la casilla [1,1]
+            aux1=abs(1-posi);//Calcula la distancia en i
+            aux2=abs(1-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 5:
-            aux1=abs(1-posi);
-            aux2=abs(2-posj);
-            distancia=aux1+aux2;
+        case 5://Si estamos en la casilla [1,2]
+            aux1=abs(1-posi);//Calcula la distancia en i
+            aux2=abs(2-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 6:
-            aux1=abs(2-posi);
-            aux2=abs(0-posj);
-            distancia=aux1+aux2;
+        case 6://Si estamos en la casilla [2,0]
+            aux1=abs(2-posi);//Calcula la distancia en i
+            aux2=abs(0-posj);//Calcula la diatancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 7:
-            aux1=abs(2-posi);
-            aux2=abs(1-posj);
-            distancia=aux1+aux2;
+        case 7://Si estamos en la casilla [2,1]
+            aux1=abs(2-posi);//Calcula la distancia en i
+            aux2=abs(1-posj);//Calcula la distancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
-        case 8:
-            aux1=abs(2-posi);
-            aux2=abs(2-posj);
-            distancia=aux1+aux2;
+        case 8://Si estamos en la casilla [2,2]
+            aux1=abs(2-posi);//Calcula la distancia en i
+            aux2=abs(2-posj);//Calcula la distancia en j
+            distancia=aux1+aux2;//Suma las distancia de i + j
             break;
         default:
             cout<<"Numero no posible\n";
         }
-        return distancia;
+        return distancia;//retorna las suma de las distancias i+j
     }
 };
 
@@ -407,10 +403,10 @@ class Nodo {
 public:
 
     Estado estado;
-    Nodo *padre;
-    Nodo **hijos;
+    Nodo *padre;//Nodo padre
+    Nodo **hijos;//Nodo hijo
     int fr;//factor de ramificacion
-    int n;//profundidad
+    int n;//nivel de profundidad
 
     int f;
     int h;
@@ -419,8 +415,7 @@ public:
 
 
 
-    Nodo() {
-        //estado=Estado();
+    Nodo() {//Constructor de nodo
         padre=NULL;
         hijos=NULL;
         fr=0;
@@ -433,7 +428,7 @@ public:
     };
 
 
-
+    //Sobrecarga de constructor de nodo
     Nodo(Estado es) {
         estado=es;
         padre=NULL;
@@ -458,28 +453,32 @@ public:
 
     };
 
+    //Retorna un puntero hacia a si mismo
     Nodo* autoApuntador() {
         return this;
     };
 
+    //Sobrecarga de constructor
     Nodo(Nodo *pa,Estado *es) {
 
         padre=pa;
         estado=es->getEstado();
 
-
     };
 
+    //Compara el nodo
     bool comparar(Nodo *n){
 
         for(int i=0;i<3;i++){
             for(int j=0;i<3;i++){
+                //Si nodo es diferente al nivel de profundidad retorna falso
                 if(estado.e[i]!=n->estado.e[i]){
                     return false;
                 }
             }
         }
 
+        //si el nodo es diferente al nivel de profundida, retorna falso
         if(f!=n->f){
             return false;
         }
@@ -487,6 +486,7 @@ public:
 
     }
 
+    //Imprime en consola los estados
     void print(){
         estado.printEstado();
 
@@ -498,6 +498,7 @@ public:
 
     }
 
+    //Imprime los nodo padres
     void imprimirPadres() {
 
         Nodo *padres[n+1];
@@ -520,9 +521,8 @@ public:
 
     }
 
+    //Devuelos toso los estados posibles generados moviendo la pieza
     void expandirNodo() {//funcion succesor
-
-
         int nh=0;
         Estado **mes;
         mes=new Estado*[4];
@@ -530,78 +530,66 @@ public:
         for(int i=1; i<=4; i++) {
 
             Estado *es =(new Estado(estado.e));
-
-
+            //Si
             if(es->pasoSiguiente(i) && es->existeSolucion()) {
                 mes[nh]=es;
                 nh++;
                 //es->printEstado();
-
             }
-
             es=nullptr;
         }
-
-
+        //el factor de ramificaion es al nodo hijo
         fr=nh;
-
         hijos=new Nodo*[fr];
 
+        //Si el nodo hijo es igual a cero retorna
         if(nh==0) {
             return;
         }
 
+        //Si el factor de ramificacion es menor
         for(int i=0; i<fr; i++) {
-            hijos[i]=new Nodo();
-            hijos[i]->padre=this;
-            hijos[i]->n=n+1;
+            hijos[i]=new Nodo();//Se crea nodos hijos
+            hijos[i]->padre=this;//Apunta hacia el nodo padre
+            hijos[i]->n=n+1;//Los nodos hijos se ingrementa en 1
             hijos[i]->estado=mes[i]->getEstado();
+            //Los nodos hijos calcula la distacia
             hijos[i]->h=hijos[i]->estado.funcionDistanciaManhattan();
             hijos[i]->g=this->g+1;
             hijos[i]->f=hijos[i]->h+hijos[i]->g;
-
-
         }
 
     };
 
+    //Determina la calidad del resultado del menor valor
     Nodo * menorFValue() {
-
         Nodo * menor;
         menor=NULL;
-        if(fr==0)return NULL;
+
+        if(fr==0)return NULL;//Si el factor de ramificacion es igual a cero retorna 0
         menor=hijos[0];
         for(int i=1; i<fr; i++) {
             if(menor->f > hijos[i]->f) {
                 menor=hijos[i];
             }
         }
-
-        return menor;
-
+        return menor;//Retorna la el menor valor del resultado
     }
 
-
+    //Determina la calidad del resultado del segundo valor menor
     int segundoMenorFValue() {
-
         int primero=menorFValue()->f;
         int segundo=9999;
 
         for(int i=0; i<fr; i++) {
-            int x=hijos[i]->f;
-            if( x<segundo && x!=primero) {
-                segundo=x;
+            int x=hijos[i]->f;//Apunta hacia a frontera
+            if( x<segundo && x!=primero) {//Si nodo hijo es menor al segundo hijo y diferente al primero
+                segundo=x;//Guarda el valor en la variable
             }
         }
-
-        return segundo;
-
+        return segundo;//Retorna el valor
     }
 
-
-
 };
-
-
 
 #endif // CABECERA_H_INCLUDED
