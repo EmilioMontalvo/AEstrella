@@ -547,13 +547,13 @@ public:
             return;
         }
 
-        //Si el factor de ramificacion es menor
+        //por cada hijo
         for(int i=0; i<fr; i++) {
             hijos[i]=new Nodo();//Se crea nodos hijos
             hijos[i]->padre=this;//Apunta hacia el nodo padre
-            hijos[i]->n=n+1;//Los nodos hijos se ingrementa en 1
+            hijos[i]->n=n+1;//La profundidad de los nodos hijos se ingrementa en 1
             hijos[i]->estado=mes[i]->getEstado();
-            //Los nodos hijos calcula la distacia
+            //Los nodos hijos calcula la funcion de evaluacion, camino y heurustica
             hijos[i]->h=hijos[i]->estado.funcionDistanciaManhattan();
             hijos[i]->g=this->g+1;
             hijos[i]->f=hijos[i]->h+hijos[i]->g;
@@ -561,22 +561,22 @@ public:
 
     };
 
-    //Determina la calidad del resultado del menor valor
+    //Devuelve el nodo con menor valor f de los hijos del nodo
     Nodo * menorFValue() {
         Nodo * menor;
         menor=NULL;
 
-        if(fr==0)return NULL;//Si el factor de ramificacion es igual a cero retorna 0
+        if(fr==0)return NULL;//Si el factor de ramificacion es igual a cero retorna NULL
         menor=hijos[0];
         for(int i=1; i<fr; i++) {
             if(menor->f > hijos[i]->f) {
                 menor=hijos[i];
             }
         }
-        return menor;//Retorna la el menor valor del resultado
+        return menor;//Retorna el nodo del menor valor del resultado
     }
 
-    //Determina la calidad del resultado del segundo valor menor
+    //devuelve el valor f del segundo mejor nodo de los hijos.
     int segundoMenorFValue() {
         int primero=menorFValue()->f;
         int segundo=9999;
