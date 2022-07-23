@@ -17,30 +17,30 @@ Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
     }
     Nodo *s=NULL;//Nodo vacio
     Nodo *best=NULL;//Mejor nodo vacio
-    Nodo *result=NULL;//Resultado del nodo vacio
+    Nodo *result=NULL;//Resultado
 
-    //Incrementa si el factor de ramifacacion es menor
+    //Itera por cada hijo
     for(int i=0;i<node->fr;i++){
         s=node->hijos[i];//Almacena el nodo hijo
-        s->f=max(s->g+s->h,node->f);//Escojer le maximo valor de nodos en la frontera
+        s->f=max(s->g+s->h,node->f);//Escojer el valor maximo entre s.h+a.g y el nodo
 
 
     }
-    //Mientras el mejor nodos del valor menor
+    //do loop
     while(true){
-        best=node->menorFValue();
-        if(best->f>f_limit){//el mejor nodo en mayor al limete de frontera retorna null
+        best=node->menorFValue();//el mejor nodo que se tiene
+        if(best->f>f_limit){//si best.f es mayor que el limite se retona best.f y nulo
             *f_cost=best->f;
 
             return NULL;
         }
 
-        //Almacena el nodo del segundo mejor valor
+        //Almacena el valor f del segundo mejor nodo
         int alternative=node->segundoMenorFValue();
-        //Ejecojer el mejor valor
+        //llamda recuriva
         result=RBFS(best,min(f_limit,alternative),&best->f);
 
-        if(result!=NULL){//Si el resultado del mejor valor es diferente de null retorna el valor
+        if(result!=NULL){//si el resultado es diferente de nulo retonar
             return result;
         }
     }
@@ -59,16 +59,16 @@ int main() {
 
     Nodo n;//Variable de tipo nodo
 
-    //Mientras el nodo sea diferente llamar al metodo existe solucion
+    //Mientras el estado no tenga solucion generar nuevos estados aleatorios
     while(!n.estado.existeSolucion()) {
-        n.estado.estadoAleatorio();//asigan el valor de manra aleatorio
+        n.estado.estadoAleatorio();
 
     }
-    //Imprime las ejecuciones desde el estado inical
+    //Imprime el estado inicial
     cout<<"Estado inicial:"<<endl;
     n.estado.printEstado();
 
-    //Busca la soluciones que apunta hacia si mismo
+
     if(n.estado.existeSolucion()) {
         Nodo *sol;
 
