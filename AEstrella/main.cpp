@@ -50,7 +50,7 @@ Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
 //Busca el camino mas corto desde sus estado incial
 Nodo * busquedaAEstrella(Nodo *n){
     int x=0;
-    return RBFS(n,999,&x);//Retorn el mejor valor
+    return RBFS(n,999,&x);//Retorna el nodo final
 
 }
 
