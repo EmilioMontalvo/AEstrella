@@ -408,9 +408,9 @@ public:
     int fr;//factor de ramificacion
     int n;//nivel de profundidad
 
-    int f;
-    int h;
-    int g;
+    int f;//funcion de evaluacion
+    int h;//valor de la heuristica
+    int g;//costo del camino real
 
 
 
