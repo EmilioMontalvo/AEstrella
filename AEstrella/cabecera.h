@@ -317,7 +317,7 @@ public:
                     x=piezas[t];
                     if(x!=-1) {//Si la pieza es diferente de -1
                         e[i][j]=x;//se guarda la posición
-                        piezas[t]=-1;
+                        piezas[t]=-1;//se usa -1 para señalar que la pieza ha sido sacada
                         asignado=true;// retorna un true
                     }
                 }
