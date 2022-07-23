@@ -89,7 +89,7 @@ int main() {
             cout<<sol->n<<endl;
         }
 
-    } else {// Si no imprime las solucion no alzanda
+    } else {// Si no imprime las solucion no alcanzada
 
         cout<<"El estado no alcanzara la solucion"<<endl;
     }
