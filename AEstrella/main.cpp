@@ -22,7 +22,7 @@ Nodo* RBFS(Nodo *node,int f_limit,int * f_cost){
     //Itera por cada hijo
     for(int i=0;i<node->fr;i++){
         s=node->hijos[i];//Almacena el nodo hijo
-        s->f=max(s->g+s->h,node->f);//Escojer el valor maximo entre s.h+a.g y el nodo
+        s->f=max(s->g+s->h,node->f);//Escojer el valor maximo entre s.h+a.g y el nodo padre
 
 
     }
